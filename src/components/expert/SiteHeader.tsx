@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Menu, Search, X } from "lucide-react";
-import logoImg from "@/assets/logo3.png";
+import logoImg from "@/assets/sapsecurityexpert-black.png";
 import { LINKS } from "@/data/raghu";
 
 const NAV_LINKS = [
