@@ -5,7 +5,6 @@ export const LINKS = {
   sse2015Model:
     "https://sapsecurityexpert.com/expert-recommendations/sap-security-2015-model-already-behind",
   toggleNow: "https://www.togglenow.com",
-  toggleNowSolutions: "https://togglenow.com/solutions/",
   automationStories: "https://togglenow.com/automation-stories/",
   sapPressAuthor: "https://blog.sap-press.com/author/raghu-boddu",
   bookProcessControl: "https://www.sap-press.com/sap-process-control_5799/",
@@ -17,28 +16,13 @@ export const LINKS = {
   agInnoLabs: "https://aginnolabs.com/",
   sakshiTv: "https://www.youtube.com/watch?v=AiGP4hL041s",
   hybizTv: "https://www.youtube.com/watch?v=Rhs66vy54OE",
-  /* Configurable: the ToggleNow SAP Security & SecOps pillar page is not published yet. */
-  toggleNowSecOps: null as string | null,
 } as const;
 
-export const SECTIONS = [
-  { id: "overview", label: "Overview" },
-  { id: "expertise", label: "Expertise" },
-  { id: "books", label: "Books" },
-  { id: "secops", label: "SecOps" },
-  { id: "research", label: "Research" },
-  { id: "speaking", label: "Speaking" },
-  { id: "togglenow", label: "ToggleNow" },
-  { id: "viewpoint", label: "Viewpoint" },
-  { id: "connect", label: "Connect" },
-];
-
 export const TRUST = [
-  { value: "25+ Years", label: "SAP Security • GRC • Audit • Automation" },
-  { value: "SAP PRESS", label: "Published author, Rheinwerk Publishing" },
-  { value: "CISA • CFE • CDPSE", label: "Audit, fraud & data privacy credentials" },
-  { value: "SAP Certified", label: "SAP Certified Security Professional" },
-  { value: "Founder", label: "SAP Security Expert community" },
+  { value: "SAP PRESS", label: "Published author" },
+  { value: "CISA · CFE · CDPSE", label: "Professional credentials" },
+  { value: "SAP Certified", label: "Security professional" },
+  { value: "Founder", label: "SAP Security Expert" },
 ];
 
 export const EXPERTISE = [
@@ -158,54 +142,6 @@ export const CERTIFICATIONS = [
   { code: "Security+", name: "CompTIA Security+" },
 ];
 
-export const TIMELINE = [
-  {
-    year: "2005",
-    title: "Founded SAP Security Expert",
-    text: "A community and knowledge platform for practitioners in SAP Security, GRC, Cybersecurity and Audit.",
-  },
-  {
-    year: "",
-    title: "SAP Security & Authorizations",
-    text: "Traditional SAP authorization administration, role design and authorization architecture in complex SAP environments.",
-  },
-  {
-    year: "",
-    title: "SAP GRC",
-    text: "Access Control, Process Control and Risk Management implementations, upgrades and optimisation.",
-  },
-  {
-    year: "",
-    title: "Access Governance",
-    text: "Access risk analysis, Segregation of Duties, user access reviews and emergency access management at scale.",
-  },
-  {
-    year: "",
-    title: "Cloud Security",
-    text: "SAP Cloud Security, SAP Cloud Identity Access Governance and hybrid landscape access models.",
-  },
-  {
-    year: "",
-    title: "Automation",
-    text: "Orchestrated automations delivered in SAP GRC without RPA or AI, published as ToggleNow Automation Stories.",
-  },
-  {
-    year: "",
-    title: "Cybersecurity",
-    text: "SAP threat monitoring, SIEM/SOAR integration, data protection and continuous security monitoring.",
-  },
-  {
-    year: "",
-    title: "AI-driven Security Operations",
-    text: "AI for SAP Security, AI agent authorizations and non-human identity governance with human oversight.",
-  },
-  {
-    year: "Today",
-    title: "SAP SecOps",
-    text: "Continuous SAP Security: pervasive visibility, risk analysis, automation and human oversight.",
-  },
-];
-
 export const RESEARCH_TOPICS = [
   "Evolution of SAP Security",
   "Digital access risk",
@@ -259,18 +195,6 @@ export const PODCAST_TOPICS = [
   "Risk Enterprise",
   "Leadership",
   "The future of SAP Security",
-];
-
-export const SSE_ECOSYSTEM = [
-  "Articles by experts",
-  "Research & engineering",
-  "Learning resources",
-  "Podcasts",
-  "Downloads",
-  "Community contributions",
-  "Security tools",
-  "Premium content",
-  "Expert discussion",
 ];
 
 export const SPEAKING_CHANNELS = [

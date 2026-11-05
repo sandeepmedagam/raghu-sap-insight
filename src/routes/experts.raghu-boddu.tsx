@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Award, BookOpen, Clock, Play, ShieldCheck, Users, X } from "lucide-react";
+import { Play, X } from "lucide-react";
 import heroImg from "@/assets/hero.png";
 import { SiteHeader } from "@/components/expert/SiteHeader";
-import { SectionNav, ScrollProgress, MobileSectionBar } from "@/components/expert/SectionNav";
 import { Arrow, ExtLink, Reveal, Section, SectionHeader } from "@/components/expert/primitives";
 import {
   ARTICLE_CATEGORIES,
@@ -16,8 +15,6 @@ import {
   PODCAST_TOPICS,
   RESEARCH_TOPICS,
   SPEAKING_CHANNELS,
-  SSE_ECOSYSTEM,
-  TIMELINE,
   TRUST,
   VIEWPOINT_QUESTIONS,
 } from "@/data/raghu";
@@ -78,16 +75,8 @@ export const Route = createFileRoute("/experts/raghu-boddu")({
 function ExpertProfile() {
   return (
     <div className="min-h-screen bg-background">
-      <ScrollProgress />
       <SiteHeader />
-      <MobileSectionBar />
-
-      <div className="mx-auto max-w-[1536px] xl:grid xl:grid-cols-[220px_minmax(0,1fr)] xl:gap-10 xl:px-8">
-        <div className="hidden py-16 xl:block">
-          <SectionNav />
-        </div>
-
-        <main>
+      <main className="mx-auto max-w-[1440px]">
           <Hero />
           <TrustStrip />
           <Overview />
@@ -96,74 +85,54 @@ function ExpertProfile() {
           <Books />
           <Training />
           <Certifications />
-          <Career />
           <SecOps />
           <Research />
           <Articles />
           <Podcasts />
           <Speaking />
           <Interviews />
-          <ToggleNow />
-          <SapSecurityExpert />
           <Viewpoint />
           <Connect />
-        </main>
-      </div>
+      </main>
     </div>
   );
 }
 
 /* ---------------------------------------------------------------- Hero */
 
-const TRUST_ICONS = [Clock, BookOpen, ShieldCheck, Award, Users];
-
 function Hero() {
   return (
     <section
       id="overview"
-      className="scroll-mt-24 border-b border-border-light px-5 py-14 md:px-8 md:py-16 xl:py-16"
+      className="hero-section scroll-mt-24"
     >
-      <div className="grid gap-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:items-start lg:gap-14">
-        <Reveal>
-          <p className="eyebrow">SAP Security Expert</p>
-          <h1 className="mt-4">
-            <span className="block">Raghu Boddu</span>
-            <span className="mt-1 block text-[26px] font-normal text-text-secondary md:text-[34px]">
-              SAP Security Expert
-            </span>
+      <div className="grid items-center lg:grid-cols-[1.03fr_0.97fr]">
+        <Reveal className="hero-copy">
+          <h1 className="hero-title">
+            Raghu<br className="hidden sm:block" /> Boddu
           </h1>
-          <p className="mt-4 font-display text-[16px] font-semibold leading-normal text-text-primary md:text-[18px]">
-            SAP Security, GRC, Cyber Security, Access Governance, Automation, AI
+          <p className="hero-role">SAP Security Expert</p>
+          <p className="hero-summary">
+            Building practical, continuously governed SAP security for complex enterprise environments.
           </p>
-          <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-text-secondary md:text-[17px]">
-            Raghu Boddu is an SAP Security and GRC expert with around 25 years of experience across
-            SAP security, governance, risk and compliance, audits, access governance, automation and
-            enterprise cybersecurity.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="#expertise"
-              className="inline-flex items-center gap-2 rounded-sm bg-primary px-5 py-3 text-[15px] font-medium text-white transition-colors duration-200 hover:bg-[#d94835]"
-            >
-              Explore Expertise <Arrow className="text-white" />
+          <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-4">
+            <a href="#expertise" className="button-primary">
+              Explore expertise <Arrow className="text-white" />
             </a>
-            <a
-              href="#connect"
-              className="inline-flex items-center gap-2 rounded-sm border border-[#ea5845] px-5 py-3 text-[15px] font-medium text-[#ea5845] transition-colors duration-200 hover:bg-orange-50"
-            >
-              Connect
+            <a href="#connect" className="text-link button-secondary">
+              Connect with Raghu <span aria-hidden="true">↗</span>
             </a>
           </div>
         </Reveal>
 
-        <Reveal delay={120}>
-          <figure className="overflow-hidden rounded-xl border border-border bg-surface-2 shadow-xs">
+        <Reveal delay={100} className="hero-portrait-wrap">
+          <figure className="hero-portrait">
             <img
               src={heroImg || "/hero.png"}
               alt="Raghu Boddu"
               loading="eager"
               decoding="async"
-              className="aspect-[4/5] w-full object-cover object-top"
+              className="h-full w-full object-cover object-top"
             />
           </figure>
         </Reveal>
@@ -174,20 +143,14 @@ function Hero() {
 
 function TrustStrip() {
   return (
-    <div className="border-b border-border-light bg-muted-bg">
-      <ul className="grid gap-px bg-border-light px-5 py-0 md:px-8 sm:grid-cols-2 lg:grid-cols-5 lg:bg-transparent lg:gap-8 lg:py-8">
-        {TRUST.map((t, i) => {
-          const Icon = TRUST_ICONS[i] || ShieldCheck;
-          return (
-            <Reveal as="li" key={t.value} delay={i * 60} className="bg-muted-bg py-5 lg:py-0">
-              <p className="flex items-start gap-2 font-display text-[16px] font-bold text-text-primary md:text-[17px]">
-                <Icon className="mt-0.5 h-4 w-4 shrink-0 text-[#ea5845]" />
-                <span>{t.value}</span>
-              </p>
-              <p className="mt-1 text-[13px] leading-snug text-text-secondary">{t.label}</p>
-            </Reveal>
-          );
-        })}
+    <div className="proof-strip">
+      <ul className="proof-grid mx-auto max-w-[1440px] px-5 md:px-8">
+        {TRUST.map((item) => (
+          <li key={item.value} className="proof-item">
+            <span className="proof-value">{item.value}</span>
+            <span className="proof-label">{item.label}</span>
+          </li>
+        ))}
       </ul>
     </div>
   );
@@ -198,82 +161,46 @@ function TrustStrip() {
 function Overview() {
   return (
     <Section id="about">
-      <SectionHeader
-        eyebrow="About Raghu Boddu"
-        title="A career built around practical SAP security"
-      />
-      <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:gap-12">
-        <Reveal
-          delay={60}
-          className="space-y-4 text-[15px] leading-relaxed text-text-secondary md:text-[16px]"
-        >
-          <p>
-            He is, by title, CEO of ToggleNow, but heads up product innovation and design. In 2005
-            he founded{" "}
-            <ExtLink href={LINKS.sapSecurityExpert} className="!inline-flex align-baseline">
-              SAP Security Expert
-            </ExtLink>{" "}
-            — a community and knowledge platform for practitioners in the fields of SAP Security,
-            GRC, Cybersecurity and Audit.
+      <SectionHeader title="A career built around practical SAP security" />
+      <div className="career-grid mt-10">
+        <Reveal className="career-lead">
+          <p className="career-years">25+</p>
+          <p className="career-years-label">years in SAP Security and GRC</p>
+          <p className="career-summary">
+            Raghu’s work moves SAP security from role administration and periodic reviews toward
+            automation, access governance and continuous oversight.
           </p>
-          <p>
-            Raghu has vast experience in complex SAP environments and a proven track record of
-            helping organizations transform from traditional role administration and periodic
-            compliance activities to practical, automated and continuously governed SAP security. He
-            has delivered many orchestrated automations in SAP GRC — without even using RPA or AI —
-            published as{" "}
-            <ExtLink href={LINKS.automationStories} className="!inline-flex align-baseline">
-              Automation Stories
-            </ExtLink>{" "}
-            and appreciated by the SAP Security &amp; GRC community.
-          </p>
-          <p>
-            He is also a published author with{" "}
-            <ExtLink href={LINKS.sapPressAuthor} className="!inline-flex align-baseline">
-              SAP PRESS / Rheinwerk Publishing
-            </ExtLink>
-            , educator, speaker, practitioner and contributor to the SAP security community.
-          </p>
+          <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3">
+            <ExtLink href={LINKS.sapSecurityExpert}>SAP Security Expert</ExtLink>
+            <ExtLink href={LINKS.automationStories}>Automation Stories</ExtLink>
+          </div>
         </Reveal>
 
-        <Reveal delay={120} className="rounded-xl border border-border bg-surface p-6 md:p-8">
-          <div className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-orange-200/90 bg-orange-50/70 px-2.5 py-0.5 shadow-2xs">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#ea5845]" />
-            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-800">
-              Key Distinctions
-            </span>
-          </div>
-          <ul className="mt-4 space-y-3.5">
-            {[
-              "25+ years of SAP Security, GRC, Audit & Automation experience",
-              "SAP PRESS author — SAP Access Control, SAP Process Control and SAP Cloud Identity and Access Governance",
-              "Certifications: CISA, CFE, CDPSE, SAP Certified Security Professional, SAP GRC Associate",
-              "Focus: SAP Security, SAP GRC, Access Governance, SAP Cybersecurity, Audit & Compliance, SAP S/4HANA Security, SAP Cloud Security, Security Automation and AI for SAP Security",
-              "Former Microsoft MVP — Microsoft Most Valuable Professional for three years in a row",
-            ].map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-3 text-[14.5px] leading-relaxed text-text-primary"
-              >
-                <span className="mt-[8px] h-[5px] w-[5px] shrink-0 rounded-pill bg-[#ea5845]" />
-                <span>{item}</span>
-              </li>
-            ))}
-            <li className="flex items-start gap-3 text-[14.5px] leading-relaxed text-text-primary">
-              <span className="mt-[8px] h-[5px] w-[5px] shrink-0 rounded-pill bg-[#ea5845]" />
-              <span>
-                Leadership — CEO,{" "}
-                <ExtLink href={LINKS.toggleNow} className="!inline-flex align-baseline">
-                  ToggleNow Global
-                </ExtLink>{" "}
-                · Board Member,{" "}
-                <ExtLink href={LINKS.agInnoLabs} className="!inline-flex align-baseline">
-                  Access Governance Inno Labs Oy
-                </ExtLink>
-              </span>
-            </li>
-          </ul>
-        </Reveal>
+        <div className="career-evidence">
+          <Reveal className="career-fact">
+            <h3>Published work</h3>
+            <p>
+              Author of books on SAP Access Control, SAP Process Control and SAP Cloud Identity and
+              Access Governance.
+            </p>
+            <ExtLink href={LINKS.sapPressAuthor}>SAP PRESS author page</ExtLink>
+          </Reveal>
+          <Reveal delay={60} className="career-fact">
+            <h3>Credentials</h3>
+            <p>CISA · CFE · CDPSE · SAP Certified Security Professional · SAP GRC Associate</p>
+          </Reveal>
+          <Reveal delay={120} className="career-fact">
+            <h3>Recognition</h3>
+            <p>Microsoft Most Valuable Professional for Windows Shell, three years running.</p>
+          </Reveal>
+          <Reveal delay={180} className="career-fact">
+            <h3>Leadership</h3>
+            <p>
+              CEO, ToggleNow, leading product innovation and design; board member at{" "}
+              <ExtLink href={LINKS.agInnoLabs}>Access Governance Inno Labs Oy</ExtLink>.
+            </p>
+          </Reveal>
+        </div>
       </div>
     </Section>
   );
@@ -285,26 +212,20 @@ function Expertise() {
   return (
     <Section id="expertise" tone="muted">
       <SectionHeader
-        eyebrow="Capabilities"
         title="Areas of Expertise"
-        intro="Raghu’s work sits at the intersection of SAP Security, enterprise risk and cyber security."
       />
-      <div className="mt-10 grid gap-5 md:grid-cols-2">
+      <div className="expertise-grid mt-10">
         {EXPERTISE.map((e, i) => (
           <Reveal as="article" key={e.n} delay={i * 80}>
-            <div className="group h-full rounded-lg border border-border bg-background p-6 transition-colors duration-200 hover:border-primary hover:bg-surface-2 md:p-8">
-              <p className="tech text-text-muted">{e.n}</p>
-              <h3 className="mt-3 uppercase tracking-[0.02em]">{e.title}</h3>
-              <p className="mt-3 text-[15px] leading-relaxed text-text-secondary">{e.summary}</p>
-              <ul className="mt-5 space-y-2 border-t border-border-light pt-5">
+            <div className="expertise-item">
+              <p className="font-mono text-[12px] tracking-[0.12em] text-signal">{e.n}</p>
+              <h3 className="mt-4 max-w-md text-[22px] md:text-[25px]">{e.title}</h3>
+              <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-text-secondary">
+                {e.summary}
+              </p>
+              <ul className="expertise-topics mt-6">
                 {e.topics.map((t) => (
-                  <li
-                    key={t}
-                    className="tech flex items-center gap-2 text-[13px] text-text-primary"
-                  >
-                    <span className="h-1 w-1 rounded-full bg-[#ea5845] shrink-0" />
-                    <span>{t}</span>
-                  </li>
+                  <li key={t}>{t}</li>
                 ))}
               </ul>
             </div>
@@ -317,17 +238,17 @@ function Expertise() {
 
 function AuditRisk() {
   return (
-    <Section id="audit">
+    <Section id="audit" tone="surface">
       <SectionHeader
-        eyebrow="Controls"
         title="Audit, Risk & Compliance"
-        intro="A structured control view across ITGC, SAP audit readiness and continuous controls oversight."
       />
-      <div className="mt-8 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-10 grid gap-x-8 gap-y-7 sm:grid-cols-2 lg:grid-cols-4">
         {AUDIT_MATRIX.map((c, i) => (
-          <Reveal key={c} delay={i * 40} className="bg-background p-5">
-            <p className="tech text-[11px] text-text-muted">C-{String(i + 1).padStart(2, "0")}</p>
-            <p className="mt-2 text-[15px] font-medium text-text-primary">{c}</p>
+          <Reveal key={c} delay={i * 40} className="audit-item">
+            <span aria-hidden="true" className="audit-number">
+              0{i + 1}
+            </span>
+            <p>{c}</p>
           </Reveal>
         ))}
       </div>
@@ -341,29 +262,26 @@ function Books() {
   return (
     <Section id="books" tone="muted">
       <SectionHeader
-        eyebrow="Published knowledge"
         title="SAP PRESS Author"
-        intro="Raghu is the author and co-author of several SAP PRESS books focusing on SAP Security, GRC, and Identity Access Governance."
       />
-      <div className="mt-10 grid gap-5 lg:grid-cols-3">
+      <div className="book-grid mt-10">
         {BOOKS.map((b, i) => (
-          <Reveal as="article" key={b.title} delay={i * 80}>
-            <div className="flex h-full flex-col rounded-lg border border-border bg-background transition-colors duration-200 hover:border-primary">
-              <div className="flex aspect-[3/2] flex-col justify-between border-b border-border-light bg-primary p-6">
-                <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-primary-foreground/70">
-                  SAP PRESS
-                </p>
-                <p className="font-display text-[19px] font-semibold leading-snug text-primary-foreground">
+          <Reveal
+            as="article"
+            key={b.title}
+            delay={i * 80}
+            className={`book-card ${i === 0 ? "book-card-featured" : ""}`}
+          >
+            <div className={`book-cover book-cover-${i + 1}`}>
+              <p className="book-publisher">SAP PRESS</p>
+              <p className="book-index">0{i + 1}</p>
+              <p className="book-cover-title">
                   {b.title}
-                </p>
-              </div>
-              <div className="flex flex-1 flex-col p-6">
-                <p className="text-[14px] leading-relaxed text-text-secondary">{b.description}</p>
-                <p className="mt-4 text-[13px] text-text-muted">{b.publisher}</p>
-                <div className="mt-5 pt-1">
-                  <ExtLink href={b.href}>{b.cta}</ExtLink>
-                </div>
-              </div>
+              </p>
+            </div>
+            <div className="book-details">
+              <p>{b.description}</p>
+              <ExtLink href={b.href}>{b.cta}</ExtLink>
             </div>
           </Reveal>
         ))}
@@ -378,52 +296,31 @@ function Books() {
 }
 
 function Training() {
+  const topics = [
+    "Authorization concepts",
+    "User management",
+    "Roles & profiles",
+    "Fiori authorizations",
+    "Troubleshooting",
+    "Auditing",
+  ];
+
   return (
-    <Section id="training">
-      <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
-        <div>
-          <SectionHeader
-            eyebrow="Course"
-            title="SAP S/4HANA Security Training"
-            intro="Raghu has also contributed as an instructor for SAP PRESS / Rheinwerk’s Authorizations and Security for SAP S/4HANA course. It includes practical demonstrations, is spread over 5 sessions and is available today as a recorded session."
-          />
-          <Reveal delay={80} className="mt-6">
-            <ExtLink href={LINKS.training}>View Course</ExtLink>
-          </Reveal>
-        </div>
-        <Reveal delay={80}>
-          <div className="rounded-lg border border-border bg-surface-2 p-6 md:p-8">
-            <div className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-orange-200/90 bg-orange-50/70 px-2.5 py-0.5 shadow-2xs">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#ea5845]" />
-              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-800">
-                Course Topics
-              </span>
-            </div>
-            <ul className="mt-4 space-y-3">
-              {[
-                "Authorization concepts",
-                "User management",
-                "Roles & profiles",
-                "Fiori authorizations",
-                "Troubleshooting",
-                "Auditing",
-              ].map((t, i) => (
-                <Reveal
-                  as="li"
-                  key={t}
-                  delay={i * 40}
-                  className="flex items-center justify-between border-b border-border-light pb-3 text-[15px] text-text-primary last:border-0 last:pb-0"
-                >
-                  <span className="flex items-center gap-2">
-                    <span className="h-1 w-1 rounded-full bg-[#ea5845] shrink-0" />
-                    <span>{t}</span>
-                  </span>
-                  <span className="tech text-text-muted">SAP S/4HANA</span>
-                </Reveal>
-              ))}
-            </ul>
-          </div>
+    <Section id="training" tone="surface">
+      <div className="training-layout mt-2">
+        <Reveal className="training-intro">
+          <p className="training-index">01 / LEARNING</p>
+          <h2 className="section-heading">SAP S/4HANA<br />Security Training</h2>
+          <ExtLink href={LINKS.training} className="training-link">View course</ExtLink>
         </Reveal>
+        <div className="training-topics" aria-label="Course topics">
+          {topics.map((topic, i) => (
+            <Reveal as="article" key={topic} delay={i * 35} className="training-topic">
+              <span className="training-topic-number">{String(i + 1).padStart(2, "0")}</span>
+              <h3>{topic}</h3>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </Section>
   );
@@ -435,7 +332,7 @@ function Certifications() {
 
   return (
     <Section id="certifications" tone="muted">
-      <SectionHeader eyebrow="Credentials" title="Professional Qualifications & Certifications" />
+      <SectionHeader title="Professional Qualifications & Certifications" />
       <div className="mt-10 grid gap-6 md:grid-cols-2 md:gap-8">
         <ul className="divide-y divide-border border-y border-border">
           {stack1.map((c, i) => (
@@ -446,7 +343,7 @@ function Certifications() {
               className="group flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:gap-6 px-2 rounded-sm transition-colors duration-200 hover:bg-background/80 md:py-5"
             >
               <div className="flex items-center gap-2 sm:w-40 shrink-0">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#ea5845] shrink-0" />
+                <span className="h-1.5 w-1.5 rounded-full bg-[#c94b38] shrink-0" />
                 <span className="tech text-[14px] font-semibold text-text-primary">{c.code}</span>
               </div>
               <span className="text-[15px] text-text-secondary">{c.name}</span>
@@ -463,7 +360,7 @@ function Certifications() {
               className="group flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:gap-6 px-2 rounded-sm transition-colors duration-200 hover:bg-background/80 md:py-5"
             >
               <div className="flex items-center gap-2 sm:w-40 shrink-0">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#ea5845] shrink-0" />
+                <span className="h-1.5 w-1.5 rounded-full bg-[#c94b38] shrink-0" />
                 <span className="tech text-[14px] font-semibold text-text-primary">{c.code}</span>
               </div>
               <span className="text-[15px] text-text-secondary">{c.name}</span>
@@ -475,54 +372,13 @@ function Certifications() {
   );
 }
 
-/* -------------------------------------------------------------- Career */
-
-function Career() {
-  return (
-    <Section id="career" className="hidden">
-      <SectionHeader
-        eyebrow="Professional journey"
-        title="Career Path"
-        intro="Raghu’s career has been built on a simple question: how can organizations make SAP security practical, measurable, sustainable?"
-      />
-      <div className="mt-10 max-w-3xl">
-        <ol className="relative border-l border-border pl-6 md:pl-8">
-          {TIMELINE.map((t, i) => (
-            <Reveal as="li" key={t.title} delay={i * 60} className="relative pb-9 last:pb-0">
-              <span className="absolute -left-[calc(1.5rem+5px)] top-[7px] h-[9px] w-[9px] rounded-full bg-[#ea5845] md:-left-[calc(2rem+5px)]" />
-              {t.year ? (
-                <p className="font-mono text-[12px] font-semibold text-text-primary">{t.year}</p>
-              ) : null}
-              <h3 className="mt-1 text-[18px] text-text-primary md:text-[20px]">{t.title}</h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-text-secondary">{t.text}</p>
-            </Reveal>
-          ))}
-        </ol>
-      </div>
-      <Reveal
-        delay={100}
-        className="mt-8 max-w-3xl text-[15px] leading-relaxed text-text-secondary"
-      >
-        <p>
-          Today his work includes assisting organizations in understanding not just what access a
-          user or system might have, but what that access actually allows, and what is actually
-          going on in the environment. This view increasingly influenced his thinking around
-          continuous SAP Security and the emerging discipline of SAP SecOps.
-        </p>
-      </Reveal>
-    </Section>
-  );
-}
-
 /* -------------------------------------------------------------- SecOps */
 
 function SecOps() {
   return (
-    <Section id="secops">
+    <Section id="secops" tone="surface">
       <SectionHeader
-        eyebrow="Signature thinking"
-        title="From SAP Security to SAP SecOps"
-        intro="Classic SAP Security was largely static, focused on users, roles, and periodic audits. Modern enterprise landscapes demand a transition to continuous, real-time SAP SecOps."
+        title="SAP SecOps"
       />
 
       {/* Evolution Architecture: Classic vs Modern */}
@@ -580,20 +436,10 @@ function SecOps() {
         >
           <div className="flex items-center justify-between border-b border-border pb-4">
             <div>
-              <div className="mb-2 inline-flex items-center gap-1.5 rounded-full border border-orange-200/90 bg-orange-50/70 px-2.5 py-0.5 shadow-2xs">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#ea5845]" />
-                <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-800">
-                  Modern Paradigm
-                </span>
-              </div>
-              <h3 className="mt-1 text-[20px] font-semibold text-text-primary">
+              <h3 className="text-[20px] font-semibold text-text-primary">
                 SAP SecOps Landscape
               </h3>
             </div>
-            <span className="tech inline-flex items-center gap-1.5 rounded border border-orange-200 bg-orange-50/80 px-2.5 py-1 text-[11px] font-semibold text-slate-800">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#ea5845]" />
-              Continuous · Telemetry
-            </span>
           </div>
 
           <p className="mt-4 text-[14.5px] leading-relaxed text-text-secondary">
@@ -607,7 +453,7 @@ function SecOps() {
               {MODERN_LANDSCAPE.map((m) => (
                 <span
                   key={m}
-                  className="rounded-md border border-border bg-background px-3 py-1.5 font-mono text-[12px] font-medium text-text-primary shadow-2xs transition-colors hover:border-[#ea5845] hover:bg-orange-50/30"
+                  className="rounded-md border border-border bg-background px-3 py-1.5 font-mono text-[12px] font-medium text-text-primary shadow-2xs transition-colors hover:border-[#c94b38] hover:bg-orange-50/30"
                 >
                   {m}
                 </span>
@@ -629,13 +475,7 @@ function SecOps() {
       {/* Analytical Axiom: Can Do vs Did Do */}
       <Reveal delay={160} className="mt-8 rounded-xl border border-border bg-background p-6 md:p-8">
         <div className="max-w-2xl">
-          <div className="mb-2.5 inline-flex items-center gap-1.5 rounded-full border border-orange-200/90 bg-orange-50/70 px-2.5 py-0.5 shadow-2xs">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#ea5845]" />
-            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-800">
-              The Core Analytical Framework
-            </span>
-          </div>
-          <h3 className="mt-1 text-[22px] font-semibold text-text-primary md:text-[24px]">
+          <h3 className="text-[22px] font-semibold text-text-primary md:text-[24px]">
             The “Can Do” vs. “Did Do” Duality
           </h3>
           <p className="mt-2 text-[15px] text-text-secondary">
@@ -650,7 +490,7 @@ function SecOps() {
             <div className="h-full rounded-lg border border-border bg-surface-2 p-5 md:p-6">
               <div className="flex items-center justify-between">
                 <span className="tech inline-flex items-center gap-1.5 rounded border border-border bg-background px-2.5 py-1 text-[11px] font-semibold text-text-primary">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#ea5845]" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#c94b38]" />
                   Entitlement State
                 </span>
                 <span className="font-mono text-[11px] text-text-muted">Static Analysis</span>
@@ -673,7 +513,7 @@ function SecOps() {
             <div className="h-full rounded-lg border border-border bg-surface-2 p-5 md:p-6">
               <div className="flex items-center justify-between">
                 <span className="tech inline-flex items-center gap-1.5 rounded border border-border bg-background px-2.5 py-1 text-[11px] font-semibold text-text-primary">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#ea5845]" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#c94b38]" />
                   Runtime Activity
                 </span>
                 <span className="font-mono text-[11px] text-text-muted">Dynamic Telemetry</span>
@@ -699,7 +539,7 @@ function SecOps() {
               <span className="inline-flex min-w-[130px] items-center justify-center rounded-md border border-border bg-background px-5 py-2.5 text-center font-semibold text-text-primary shadow-xs sm:min-w-[145px]">
                 Can Do
               </span>
-              <span className="text-[16px] font-bold text-[#ea5845]">+</span>
+              <span className="text-[16px] font-bold text-[#c94b38]">+</span>
               <span className="inline-flex min-w-[130px] items-center justify-center rounded-md border border-border bg-background px-5 py-2.5 text-center font-semibold text-text-primary shadow-xs sm:min-w-[145px]">
                 Did Do
               </span>
@@ -728,11 +568,7 @@ function Research() {
 
   return (
     <Section id="research" tone="muted">
-      <SectionHeader
-        eyebrow="Insights"
-        title="Research & Expert Insights"
-        intro="Raghu writes on emerging issues in SAP Security, GRC and enterprise cyber security, with particular interest in areas where traditional security models are challenged by changing technology."
-      />
+      <SectionHeader title="Expert Recommendations" />
 
       <div className="mt-10 grid gap-x-10 border-t border-border lg:grid-cols-2">
         <ul className="divide-y divide-border">
@@ -744,10 +580,10 @@ function Research() {
                 rel="noopener noreferrer"
                 className="group flex items-center justify-between gap-6 border-b border-border py-4 transition-colors duration-200 hover:bg-surface-2"
               >
-                <span className="font-mono text-[12px] uppercase tracking-[0.12em] text-text-primary transition-colors group-hover:text-[#ea5845] md:text-[13px]">
+                <span className="font-mono text-[12px] uppercase tracking-[0.12em] text-text-primary transition-colors group-hover:text-[#c94b38] md:text-[13px]">
                   {t}
                 </span>
-                <Arrow className="shrink-0 text-[#ea5845] transition-transform duration-200 group-hover:translate-x-[3px]" />
+                <Arrow className="shrink-0 text-[#c94b38] transition-transform duration-200 group-hover:translate-x-[3px]" />
               </a>
             </Reveal>
           ))}
@@ -761,10 +597,10 @@ function Research() {
                 rel="noopener noreferrer"
                 className="group flex items-center justify-between gap-6 border-b border-border py-4 transition-colors duration-200 hover:bg-surface-2"
               >
-                <span className="font-mono text-[12px] uppercase tracking-[0.12em] text-text-primary transition-colors group-hover:text-[#ea5845] md:text-[13px]">
+                <span className="font-mono text-[12px] uppercase tracking-[0.12em] text-text-primary transition-colors group-hover:text-[#c94b38] md:text-[13px]">
                   {t}
                 </span>
-                <Arrow className="shrink-0 text-[#ea5845] transition-transform duration-200 group-hover:translate-x-[3px]" />
+                <Arrow className="shrink-0 text-[#c94b38] transition-transform duration-200 group-hover:translate-x-[3px]" />
               </a>
             </Reveal>
           ))}
@@ -773,13 +609,7 @@ function Research() {
 
       <Reveal delay={100} className="mt-10">
         <article className="max-w-3xl rounded-lg border border-border bg-surface-2 p-6 md:p-8">
-          <div className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-orange-200/90 bg-orange-50/70 px-2.5 py-0.5 shadow-2xs">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#ea5845]" />
-            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-800">
-              Expert Recommendation
-            </span>
-          </div>
-          <h3 className="mt-3">SAP Security 2015 model already behind</h3>
+          <h3>SAP Security 2015 model already behind</h3>
           <p className="mt-3 text-[15px] leading-relaxed text-text-secondary">
             In his latest SAP Security Expert work, Raghu states that the traditional security model
             from 2015 is no longer sufficient for the current SAP landscape, where Fiori, BTP, APIs,
@@ -796,12 +626,8 @@ function Research() {
 
 function Articles() {
   return (
-    <Section id="articles">
-      <SectionHeader
-        eyebrow="Published content"
-        title="Technical Articles & Published Content"
-        intro="Raghu regularly publishes practical SAP Security and GRC content through SAP Security Expert, SAP PRESS and other professional channels."
-      />
+    <Section id="articles" tone="surface">
+      <SectionHeader title="Technical Writing" />
       <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {ARTICLE_CATEGORIES.map((a, i) => (
           <Reveal as="article" key={a.category} delay={i * 60}>
@@ -828,76 +654,37 @@ function Articles() {
 }
 
 function Podcasts() {
-  const mid = Math.ceil(PODCAST_TOPICS.length / 2);
-  const col1 = PODCAST_TOPICS.slice(0, mid);
-  const col2 = PODCAST_TOPICS.slice(mid);
-
   return (
     <Section id="podcasts" tone="muted">
-      <SectionHeader
-        eyebrow="Conversations"
-        title="Podcasts & Discussions"
-        intro="Raghu joins conversations with SAP Security, GRC, cybersecurity and technology professionals."
-      />
-      <div className="mt-10 grid gap-x-10 border-t border-border lg:grid-cols-2">
-        <ul className="divide-y divide-border">
-          {col1.map((p, i) => (
-            <Reveal as="li" key={p} delay={i * 40}>
-              <a
-                href={LINKS.ssePodcasts}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex flex-col gap-1 border-b border-border py-5 transition-colors duration-200 hover:bg-surface-2 sm:flex-row sm:items-center sm:justify-between"
-              >
-                <span>
-                  <span className="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold uppercase tracking-wider text-text-muted">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#ea5845]" />
-                    Podcast / Discussion
-                  </span>
-                  <span className="mt-1 block font-display text-[17px] font-semibold text-text-primary transition-colors group-hover:text-[#ea5845]">
-                    {p}
-                  </span>
-                </span>
-                <Arrow className="shrink-0 text-[#ea5845] transition-transform duration-200 group-hover:translate-x-[3px]" />
+      <div className="podcast-layout">
+        <div className="podcast-lead">
+          <SectionHeader title="Podcasts & Discussion" />
+          <Reveal delay={80} className="podcast-feature">
+            <span className="podcast-feature-number">SAP<br />SECURITY<br />EXPERT</span>
+            <h3>Conversations on securing SAP</h3>
+            <ExtLink href={LINKS.ssePodcasts} className="podcast-feature-link">Explore the series</ExtLink>
+          </Reveal>
+        </div>
+        <ol className="podcast-topics">
+          {PODCAST_TOPICS.map((topic, i) => (
+            <Reveal as="li" key={topic} delay={i * 35}>
+              <a href={LINKS.ssePodcasts} target="_blank" rel="noopener noreferrer">
+                <span className="podcast-topic-number">{String(i + 1).padStart(2, "0")}</span>
+                <span className="podcast-topic-title">{topic}</span>
+                <Arrow className="podcast-topic-arrow" />
               </a>
             </Reveal>
           ))}
-        </ul>
-        <ul className="divide-y divide-border">
-          {col2.map((p, i) => (
-            <Reveal as="li" key={p} delay={(i + mid) * 40}>
-              <a
-                href={LINKS.ssePodcasts}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex flex-col gap-1 border-b border-border py-5 transition-colors duration-200 hover:bg-surface-2 sm:flex-row sm:items-center sm:justify-between"
-              >
-                <span>
-                  <span className="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold uppercase tracking-wider text-text-muted">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#ea5845]" />
-                    Podcast / Discussion
-                  </span>
-                  <span className="mt-1 block font-display text-[17px] font-semibold text-text-primary transition-colors group-hover:text-[#ea5845]">
-                    {p}
-                  </span>
-                </span>
-                <Arrow className="shrink-0 text-[#ea5845] transition-transform duration-200 group-hover:translate-x-[3px]" />
-              </a>
-            </Reveal>
-          ))}
-        </ul>
+        </ol>
       </div>
-      <Reveal delay={80} className="mt-8">
-        <ExtLink href={LINKS.ssePodcasts}>SAP Security Expert Podcasts</ExtLink>
-      </Reveal>
     </Section>
   );
 }
 
 function Speaking() {
   return (
-    <Section id="speaking">
-      <SectionHeader eyebrow="Community" title="Speaking & Sharing Knowledge" />
+    <Section id="speaking" tone="surface">
+      <SectionHeader title="Speaking & Sharing Knowledge" />
       <div className="mt-8 grid gap-10 lg:grid-cols-2 lg:gap-16">
         <Reveal>
           <ul className="grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2">
@@ -908,14 +695,14 @@ function Speaking() {
                 delay={i * 50}
                 className="bg-background p-4 flex items-center gap-2.5 text-[15px] text-text-primary"
               >
-                <span className="h-1.5 w-1.5 rounded-full bg-[#ea5845] shrink-0" />
+                <span className="h-1.5 w-1.5 rounded-full bg-[#c94b38] shrink-0" />
                 <span>{s}</span>
               </Reveal>
             ))}
           </ul>
         </Reveal>
         <Reveal delay={100} className="flex flex-col justify-end">
-          <blockquote className="border-l-2 border-[#ea5845] pl-6">
+          <blockquote className="border-l-2 border-[#c94b38] pl-6">
             <p className="font-display text-[22px] font-semibold leading-snug text-text-primary md:text-[26px]">
               “So what should a security professional actually do differently on Monday morning?”
             </p>
@@ -949,11 +736,7 @@ function Interviews() {
 
   return (
     <Section id="interviews" tone="muted">
-      <SectionHeader
-        eyebrow="Media"
-        title="Interviews & Articles"
-        intro="Raghu’s professional journey and expertise in SAP and AI have been spotlighted on technology, professional and media platforms."
-      />
+      <SectionHeader title="Interviews & Media" />
       <div className="mt-10 grid gap-6 md:grid-cols-2">
         {media.map((m, i) => {
           const isPlaying = activeVideo === `${m.videoId}-${i}`;
@@ -1019,7 +802,7 @@ function Interviews() {
                 {/* Card Content */}
                 <div className="flex flex-1 flex-col p-5">
                   <span className="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold uppercase tracking-wider text-text-muted">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#ea5845]" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#c94b38]" />
                     {m.source}
                   </span>
                   <h3 className="mt-2 flex-1 text-[17px] font-semibold leading-snug text-text-primary md:text-[18px]">
@@ -1029,7 +812,7 @@ function Interviews() {
                     <button
                       type="button"
                       onClick={() => setActiveVideo(`${m.videoId}-${i}`)}
-                      className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#ea5845] hover:underline cursor-pointer"
+                      className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#c94b38] hover:underline cursor-pointer"
                     >
                       <Play className="h-3.5 w-3.5 fill-current" /> Watch Video
                     </button>
@@ -1060,130 +843,6 @@ function Interviews() {
   );
 }
 
-/* ----------------------------------------------------------- ToggleNow */
-
-function ToggleNow() {
-  const chain = [
-    "SAP Security",
-    "GRC",
-    "Cybersecurity",
-    "Automation",
-    "AI-driven Security Operations",
-  ];
-  return (
-    <Section id="togglenow">
-      <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
-        <div>
-          <SectionHeader
-            eyebrow="Leadership"
-            title="ToggleNow"
-            intro="Raghu is the CEO of ToggleNow, a SAP-centric technology and services company working across SAP Security, GRC, cyber security, automation and AI-driven security operations."
-          />
-          <Reveal delay={80} className="mt-4 text-[15px] leading-relaxed text-text-secondary">
-            <p>
-              At ToggleNow his focus is on translating years of SAP Security and GRC experience into
-              practical technology, automation and managed capabilities.
-            </p>
-            <div className="mt-6 flex flex-col gap-4">
-              <ExtLink href={LINKS.toggleNow}>Go to ToggleNow</ExtLink>
-              <ExtLink href={LINKS.toggleNowSolutions}>
-                Discover ToggleNow products &amp; solutions
-              </ExtLink>
-              {LINKS.toggleNowSecOps ? (
-                <ExtLink href={LINKS.toggleNowSecOps}>Explore SAP Security &amp; SecOps</ExtLink>
-              ) : null}
-              <ExtLink href={LINKS.automationStories}>Automation Stories</ExtLink>
-            </div>
-          </Reveal>
-        </div>
-        <Reveal delay={100}>
-          <div className="rounded-lg border border-border bg-background p-6 md:p-8">
-            <div className="mb-2 inline-flex items-center gap-1.5 rounded-full border border-orange-200/90 bg-orange-50/70 px-2.5 py-0.5 shadow-2xs">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#ea5845]" />
-              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-800">
-                Executive Leadership
-              </span>
-            </div>
-            <p className="mt-1 font-display text-[18px] font-semibold text-text-primary">
-              CEO / Product Innovation
-            </p>
-            <ol className="mt-6">
-              {chain.map((c, i) => (
-                <li key={c}>
-                  <p className="tech rounded-sm border border-border bg-surface-2 px-4 py-3 text-[13px] text-text-primary">
-                    {c}
-                  </p>
-                  {i < chain.length - 1 ? (
-                    <p className="tech py-1 text-center text-[13px] text-[#ea5845] font-bold">↓</p>
-                  ) : null}
-                </li>
-              ))}
-            </ol>
-          </div>
-        </Reveal>
-      </div>
-    </Section>
-  );
-}
-
-function SapSecurityExpert() {
-  const [activeBadges, setActiveBadges] = useState<Set<string>>(() => new Set(SSE_ECOSYSTEM));
-
-  const toggleBadge = (badge: string) => {
-    setActiveBadges((prev) => {
-      const next = new Set(prev);
-      if (next.has(badge)) {
-        next.delete(badge);
-      } else {
-        next.add(badge);
-      }
-      return next;
-    });
-  };
-
-  return (
-    <Section id="community" className="hidden">
-      <SectionHeader
-        eyebrow="Community platform"
-        title="SAP Security Expert"
-        intro="Raghu founded SAP Security Expert, a practitioner-focused platform connecting SAP Security, GRC, Cybersecurity and Audit professionals."
-      />
-
-      <Reveal delay={60}>
-        <div className="mt-8 flex flex-wrap items-center gap-2.5 sm:gap-3">
-          {SSE_ECOSYSTEM.map((s) => {
-            const isSelected = activeBadges.has(s);
-            return (
-              <button
-                key={s}
-                type="button"
-                onClick={() => toggleBadge(s)}
-                aria-pressed={isSelected}
-                className="inline-flex items-center gap-2 rounded-full border border-primary bg-primary px-4 py-2 text-[13.5px] font-medium leading-none text-primary-foreground shadow-xs transition-all duration-200 cursor-pointer select-none"
-              >
-                <span className="h-1.5 w-1.5 rounded-full bg-white" />
-                <span>{s}</span>
-              </button>
-            );
-          })}
-        </div>
-      </Reveal>
-
-      <Reveal delay={80} className="mt-8 max-w-3xl text-[15px] leading-relaxed text-text-secondary">
-        <p>
-          Its mission is to build a community-based knowledge and learning platform for
-          professionals working across SAP Security, GRC, Cybersecurity and Audit, publishing
-          podcasts, expert chats, technical content and community discussions.
-        </p>
-        <div className="mt-6 flex flex-wrap gap-6">
-          <ExtLink href={LINKS.sapSecurityExpert}>Go to SAP Security Expert</ExtLink>
-          <ExtLink href={LINKS.sseRecommendations}>Expert recommendations</ExtLink>
-        </div>
-      </Reveal>
-    </Section>
-  );
-}
-
 /* ----------------------------------------------------------- Viewpoint */
 
 function Viewpoint() {
@@ -1191,8 +850,8 @@ function Viewpoint() {
   const stack2 = VIEWPOINT_QUESTIONS.slice(4, 8);
 
   return (
-    <Section id="viewpoint" tone="muted">
-      <SectionHeader eyebrow="Philosophy" title="Raghu’s Viewpoint" />
+    <Section id="viewpoint" tone="surface">
+      <SectionHeader title="Raghu’s Viewpoint" />
       <Reveal delay={60} className="mt-6 max-w-3xl">
         <p className="font-display text-[22px] font-semibold leading-snug text-text-primary md:text-[28px]">
           SAP Security should be more than just “Can the user access it?”
@@ -1213,7 +872,7 @@ function Viewpoint() {
               delay={i * 50}
               className="group flex items-start gap-4 py-4 transition-colors duration-200 hover:bg-background/80 px-2 rounded-sm md:py-5"
             >
-              <span className="tech w-7 shrink-0 pt-0.5 text-[12px] font-bold text-[#ea5845]">
+              <span className="tech w-7 shrink-0 pt-0.5 text-[12px] font-bold text-[#c94b38]">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <span className="font-display text-[17px] font-semibold leading-snug text-text-primary md:text-[19px]">
@@ -1232,7 +891,7 @@ function Viewpoint() {
               delay={(i + 4) * 50}
               className="group flex items-start gap-4 py-4 transition-colors duration-200 hover:bg-background/80 px-2 rounded-sm md:py-5"
             >
-              <span className="tech w-7 shrink-0 pt-0.5 text-[12px] font-bold text-[#ea5845]">
+              <span className="tech w-7 shrink-0 pt-0.5 text-[12px] font-bold text-[#c94b38]">
                 {String(i + 5).padStart(2, "0")}
               </span>
               <span className="font-display text-[17px] font-semibold leading-snug text-text-primary md:text-[19px]">
@@ -1259,75 +918,32 @@ function Connect() {
     { label: "Personal website", value: "www.raghuboddu.com", href: LINKS.personalSite },
   ];
   return (
-    <Section id="connect">
-      <SectionHeader
-        eyebrow="Get in touch"
-        title="Follow & Connect"
-        intro="Connect with Raghu on his professional channels or his personal website for professional discussions, speaking opportunities, interviews, podcasts, research collaborations or SAP Security / GRC topics."
-      />
-      <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-16">
-        <Reveal>
-          <ul className="border-t border-border">
-            {channels.map((c) => (
+    <Section id="connect" tone="surface" className="connect-section">
+      <div className="connect-layout">
+        <Reveal className="connect-intro">
+          <p className="connect-kicker">RAGHU BODDU</p>
+          <SectionHeader title="Follow & Connect" />
+          <p className="connect-description">For SAP security conversations, speaking and collaboration.</p>
+          <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="connect-primary button-primary">
+            Connect on LinkedIn <Arrow className="text-white" />
+          </a>
+        </Reveal>
+        <Reveal delay={100} className="connect-links-wrap">
+          <h3 className="connect-links-heading">Find Raghu online</h3>
+          <ul className="connect-links">
+            {channels.map((c, i) => (
               <li key={c.label}>
-                <a
-                  href={c.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center justify-between gap-6 border-b border-border py-4 transition-colors duration-200 hover:bg-surface-2"
-                >
-                  <span className="flex flex-col">
-                    <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-text-muted">
-                      {c.label}
-                    </span>
-                    <span className="mt-1 text-[15px] font-medium text-text-primary">
-                      {c.value}
-                    </span>
+                <a href={c.href} target="_blank" rel="noopener noreferrer">
+                  <span className="connect-number">0{i + 1}</span>
+                  <span className="connect-channel">
+                    <span>{c.label}</span>
+                    <small>{c.value}</small>
                   </span>
-                  <Arrow className="text-[#ea5845] transition-transform duration-200 group-hover:translate-x-[3px]" />
+                  <Arrow className="connect-arrow" />
                 </a>
               </li>
             ))}
           </ul>
-        </Reveal>
-        <Reveal delay={100}>
-          <div className="rounded-lg border border-border bg-surface-2 p-6 md:p-8">
-            <div className="mb-2 inline-flex items-center gap-1.5 rounded-full border border-orange-200/90 bg-orange-50/70 px-2.5 py-0.5 shadow-2xs">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#ea5845]" />
-              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-800">
-                Start A Conversation
-              </span>
-            </div>
-            <p className="mt-3 font-display text-[20px] font-semibold text-text-primary">
-              Speaking, interviews, podcasts and research collaborations
-            </p>
-            <div className="mt-6 flex flex-col gap-3">
-              <a
-                href={LINKS.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-sm bg-[#ea5845] px-5 py-3 text-[15px] font-medium text-white transition-colors duration-200 hover:bg-[#d94835]"
-              >
-                Connect with Raghu <Arrow className="text-white" />
-              </a>
-              <a
-                href={LINKS.sapSecurityExpert}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-sm border border-[#ea5845] px-5 py-3 text-[15px] font-medium text-[#ea5845] transition-colors duration-200 hover:bg-orange-50"
-              >
-                Explore SAP Security Expert <Arrow className="text-[#ea5845]" />
-              </a>
-              <a
-                href={LINKS.toggleNow}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-sm border border-border px-5 py-3 text-[15px] font-medium text-text-primary transition-colors duration-200 hover:border-[#ea5845] hover:text-[#ea5845] hover:bg-orange-50/40"
-              >
-                Visit ToggleNow <Arrow className="text-[#ea5845]" />
-              </a>
-            </div>
-          </div>
         </Reveal>
       </div>
     </Section>
