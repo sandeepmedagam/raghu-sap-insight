@@ -8,7 +8,7 @@ export function Arrow({ className = "" }: { className?: string }) {
       viewBox="0 0 16 16"
       fill="none"
       aria-hidden="true"
-      className={`text-[#c94b38] ${className}`}
+      className={`text-signal ${className}`}
     >
       <path
         d="M3 8h9M8.5 4l4 4-4 4"

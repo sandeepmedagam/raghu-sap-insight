@@ -76,7 +76,7 @@ function ExpertProfile() {
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
-      <main className="mx-auto max-w-[1440px]">
+      <main className="w-full">
           <Hero />
           <TrustStrip />
           <Overview />
@@ -144,7 +144,7 @@ function Hero() {
 function TrustStrip() {
   return (
     <div className="proof-strip">
-      <ul className="proof-grid mx-auto max-w-[1440px] px-5 md:px-8">
+      <ul className="proof-grid mx-auto max-w-[2800px] px-5 md:px-8">
         {TRUST.map((item) => (
           <li key={item.value} className="proof-item">
             <span className="proof-value">{item.value}</span>
@@ -343,7 +343,7 @@ function Certifications() {
               className="group flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:gap-6 px-2 rounded-sm transition-colors duration-200 hover:bg-background/80 md:py-5"
             >
               <div className="flex items-center gap-2 sm:w-40 shrink-0">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#c94b38] shrink-0" />
+                <span className="h-1.5 w-1.5 rounded-full bg-signal shrink-0" />
                 <span className="tech text-[14px] font-semibold text-text-primary">{c.code}</span>
               </div>
               <span className="text-[15px] text-text-secondary">{c.name}</span>
@@ -360,7 +360,7 @@ function Certifications() {
               className="group flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:gap-6 px-2 rounded-sm transition-colors duration-200 hover:bg-background/80 md:py-5"
             >
               <div className="flex items-center gap-2 sm:w-40 shrink-0">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#c94b38] shrink-0" />
+                <span className="h-1.5 w-1.5 rounded-full bg-signal shrink-0" />
                 <span className="tech text-[14px] font-semibold text-text-primary">{c.code}</span>
               </div>
               <span className="text-[15px] text-text-secondary">{c.name}</span>
@@ -453,7 +453,7 @@ function SecOps() {
               {MODERN_LANDSCAPE.map((m) => (
                 <span
                   key={m}
-                  className="rounded-md border border-border bg-background px-3 py-1.5 font-mono text-[12px] font-medium text-text-primary shadow-2xs transition-colors hover:border-[#c94b38] hover:bg-orange-50/30"
+                  className="rounded-md border border-border bg-background px-3 py-1.5 font-mono text-[12px] font-medium text-text-primary shadow-2xs transition-colors hover:border-signal hover:bg-orange-50/30"
                 >
                   {m}
                 </span>
@@ -490,7 +490,7 @@ function SecOps() {
             <div className="h-full rounded-lg border border-border bg-surface-2 p-5 md:p-6">
               <div className="flex items-center justify-between">
                 <span className="tech inline-flex items-center gap-1.5 rounded border border-border bg-background px-2.5 py-1 text-[11px] font-semibold text-text-primary">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#c94b38]" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-signal" />
                   Entitlement State
                 </span>
                 <span className="font-mono text-[11px] text-text-muted">Static Analysis</span>
@@ -513,7 +513,7 @@ function SecOps() {
             <div className="h-full rounded-lg border border-border bg-surface-2 p-5 md:p-6">
               <div className="flex items-center justify-between">
                 <span className="tech inline-flex items-center gap-1.5 rounded border border-border bg-background px-2.5 py-1 text-[11px] font-semibold text-text-primary">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#c94b38]" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-signal" />
                   Runtime Activity
                 </span>
                 <span className="font-mono text-[11px] text-text-muted">Dynamic Telemetry</span>
@@ -539,7 +539,7 @@ function SecOps() {
               <span className="inline-flex min-w-[130px] items-center justify-center rounded-md border border-border bg-background px-5 py-2.5 text-center font-semibold text-text-primary shadow-xs sm:min-w-[145px]">
                 Can Do
               </span>
-              <span className="text-[16px] font-bold text-[#c94b38]">+</span>
+              <span className="text-[16px] font-bold text-signal">+</span>
               <span className="inline-flex min-w-[130px] items-center justify-center rounded-md border border-border bg-background px-5 py-2.5 text-center font-semibold text-text-primary shadow-xs sm:min-w-[145px]">
                 Did Do
               </span>
@@ -580,10 +580,10 @@ function Research() {
                 rel="noopener noreferrer"
                 className="group flex items-center justify-between gap-6 border-b border-border py-4 transition-colors duration-200 hover:bg-surface-2"
               >
-                <span className="font-mono text-[12px] uppercase tracking-[0.12em] text-text-primary transition-colors group-hover:text-[#c94b38] md:text-[13px]">
+                <span className="font-mono text-[12px] uppercase tracking-[0.12em] text-text-primary transition-colors group-hover:text-signal md:text-[13px]">
                   {t}
                 </span>
-                <Arrow className="shrink-0 text-[#c94b38] transition-transform duration-200 group-hover:translate-x-[3px]" />
+                <Arrow className="shrink-0 text-signal transition-transform duration-200 group-hover:translate-x-[3px]" />
               </a>
             </Reveal>
           ))}
@@ -597,10 +597,10 @@ function Research() {
                 rel="noopener noreferrer"
                 className="group flex items-center justify-between gap-6 border-b border-border py-4 transition-colors duration-200 hover:bg-surface-2"
               >
-                <span className="font-mono text-[12px] uppercase tracking-[0.12em] text-text-primary transition-colors group-hover:text-[#c94b38] md:text-[13px]">
+                <span className="font-mono text-[12px] uppercase tracking-[0.12em] text-text-primary transition-colors group-hover:text-signal md:text-[13px]">
                   {t}
                 </span>
-                <Arrow className="shrink-0 text-[#c94b38] transition-transform duration-200 group-hover:translate-x-[3px]" />
+                <Arrow className="shrink-0 text-signal transition-transform duration-200 group-hover:translate-x-[3px]" />
               </a>
             </Reveal>
           ))}
@@ -695,14 +695,14 @@ function Speaking() {
                 delay={i * 50}
                 className="bg-background p-4 flex items-center gap-2.5 text-[15px] text-text-primary"
               >
-                <span className="h-1.5 w-1.5 rounded-full bg-[#c94b38] shrink-0" />
+                <span className="h-1.5 w-1.5 rounded-full bg-signal shrink-0" />
                 <span>{s}</span>
               </Reveal>
             ))}
           </ul>
         </Reveal>
         <Reveal delay={100} className="flex flex-col justify-end">
-          <blockquote className="border-l-2 border-[#c94b38] pl-6">
+          <blockquote className="border-l-2 border-signal pl-6">
             <p className="font-display text-[22px] font-semibold leading-snug text-text-primary md:text-[26px]">
               “So what should a security professional actually do differently on Monday morning?”
             </p>
@@ -802,7 +802,7 @@ function Interviews() {
                 {/* Card Content */}
                 <div className="flex flex-1 flex-col p-5">
                   <span className="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold uppercase tracking-wider text-text-muted">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#c94b38]" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-signal" />
                     {m.source}
                   </span>
                   <h3 className="mt-2 flex-1 text-[17px] font-semibold leading-snug text-text-primary md:text-[18px]">
@@ -812,7 +812,7 @@ function Interviews() {
                     <button
                       type="button"
                       onClick={() => setActiveVideo(`${m.videoId}-${i}`)}
-                      className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#c94b38] hover:underline cursor-pointer"
+                      className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-signal hover:underline cursor-pointer"
                     >
                       <Play className="h-3.5 w-3.5 fill-current" /> Watch Video
                     </button>
@@ -872,7 +872,7 @@ function Viewpoint() {
               delay={i * 50}
               className="group flex items-start gap-4 py-4 transition-colors duration-200 hover:bg-background/80 px-2 rounded-sm md:py-5"
             >
-              <span className="tech w-7 shrink-0 pt-0.5 text-[12px] font-bold text-[#c94b38]">
+              <span className="tech w-7 shrink-0 pt-0.5 text-[12px] font-bold text-signal">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <span className="font-display text-[17px] font-semibold leading-snug text-text-primary md:text-[19px]">
@@ -891,7 +891,7 @@ function Viewpoint() {
               delay={(i + 4) * 50}
               className="group flex items-start gap-4 py-4 transition-colors duration-200 hover:bg-background/80 px-2 rounded-sm md:py-5"
             >
-              <span className="tech w-7 shrink-0 pt-0.5 text-[12px] font-bold text-[#c94b38]">
+              <span className="tech w-7 shrink-0 pt-0.5 text-[12px] font-bold text-signal">
                 {String(i + 5).padStart(2, "0")}
               </span>
               <span className="font-display text-[17px] font-semibold leading-snug text-text-primary md:text-[19px]">

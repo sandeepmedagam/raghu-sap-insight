@@ -74,8 +74,8 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-border/80 bg-background/95 backdrop-blur-md">
-        <div className="site-header-inner mx-auto flex h-[82px] max-w-[1440px] items-center justify-between gap-8 px-5 md:px-8">
+      <header className="site-header sticky top-0 z-50 border-b border-border/80 bg-background/95 backdrop-blur-md">
+        <div className="site-header-inner mx-auto flex h-[82px] max-w-[2800px] items-center justify-between gap-8 px-5 md:px-8">
           <a href="#overview" onClick={navigate} aria-label="SAP Security Expert home" className="shrink-0">
             <img src={logoImg} alt="SAP Security Expert" className="h-11 w-auto object-contain" />
           </a>
