@@ -106,10 +106,10 @@ function Hero() {
       id="overview"
       className="hero-section scroll-mt-24"
     >
-      <div className="grid items-center lg:grid-cols-[1.03fr_0.97fr]">
+      <div className="hero-layout">
         <Reveal className="hero-copy">
           <h1 className="hero-title">
-            Raghu<br className="hidden sm:block" /> Boddu
+            Raghu<br className="block sm:hidden" /> Boddu
           </h1>
           <p className="hero-role">SAP Security Expert</p>
           <p className="hero-summary">
